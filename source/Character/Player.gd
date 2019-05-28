@@ -1,27 +1,22 @@
-extends KinematicBody2D
+extends Character
 
 const BASE_MOVE_SPEED = 6 * 16
 
-onready var body = $Body
-onready var weapon_handler = $WeaponHandler
-onready var weapon = $WeaponHandler/Sword
+#onready var body = $Body
+#onready var weapon_handler = $WeaponHandler
 
-onready var weapon_distance = weapon_handler.position.length()
-
-var faction = "ally"
-var velocity = Vector2.ZERO
+#var velocity = Vector2.ZERO
 var move_direction = Vector2.ZERO
 var desired_velocity = Vector2.ZERO
 var is_attacking = false
 
 func _ready():
 	Globals.player = self
-	add_to_group(faction)
-	weapon.damage_area.add_faction_exception(faction)
+	_set_weapon($WeaponHandler/Sword)
 
 func _input(event):
 	if event.is_action_pressed("attack"):
-		weapon.attack()
+		attack()
 
 func _physics_process(delta):
 	_handle_move_input()
@@ -39,11 +34,7 @@ func _handle_move_input():
 		body.scale.x = sign(desired_velocity.x)
 
 func _move_weapon():
-	var angle = get_local_mouse_position().angle()
-	weapon_handler.position.x = cos(angle) * weapon_distance
-	weapon_handler.position.y = sin(angle) * weapon_distance
-	weapon_handler.rotation = angle
-	weapon_handler.show_behind_parent = false if angle >= 0 else true
+	weapon_handler.aim_at_target(get_local_mouse_position())
 
 func _apply_movement():
 	velocity = velocity.linear_interpolate(desired_velocity, _get_move_weight())

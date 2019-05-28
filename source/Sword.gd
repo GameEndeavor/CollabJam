@@ -1,6 +1,7 @@
 extends Node2D
+class_name Weapon
 
-export (float) var attack_range = 1.5 * 16
+export (float) var attack_range = 3.0 * 16
 export (float) var attack_duration = 0.1
 
 onready var damage_area = $DamageArea

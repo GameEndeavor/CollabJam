@@ -8,6 +8,7 @@
 extents = Vector2( 10, 3 )
 
 [node name="Sword" type="Node2D"]
+z_index = 1
 script = ExtResource( 1 )
 
 [node name="Body" type="Node2D" parent="."]

@@ -75,13 +75,24 @@ position = Vector2( 24, 536 )
 position = Vector2( 152, 536 )
 
 [node name="Grunt" parent="Tilemaps/Decor/Entities" index="1" instance=ExtResource( 3 )]
-position = Vector2( 72, 480 )
+position = Vector2( 88.2236, 480.422 )
+collision_layer = 0
 
 [node name="Grunt2" parent="Tilemaps/Decor/Entities" index="2" instance=ExtResource( 3 )]
-position = Vector2( 88, 456 )
+position = Vector2( 119.165, 450.317 )
+collision_layer = 0
 
 [node name="Grunt3" parent="Tilemaps/Decor/Entities" index="3" instance=ExtResource( 3 )]
-position = Vector2( 88, 512 )
+position = Vector2( 120.419, 513.453 )
+collision_layer = 0
+
+[node name="Grunt4" parent="Tilemaps/Decor/Entities" index="4" instance=ExtResource( 3 )]
+position = Vector2( 64.3907, 456.17 )
+collision_layer = 0
+
+[node name="Grunt5" parent="Tilemaps/Decor/Entities" index="5" instance=ExtResource( 3 )]
+position = Vector2( 58.1189, 501.328 )
+collision_layer = 0
 
 [node name="Spawnpoint" parent="SpawnPoints" index="0"]
 position = Vector2( 272, 528 )

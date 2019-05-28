@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Weapons/WeaponHandler.gd" type="Script" id=1]
+
+[node name="WeaponHandler" type="Position2D"]
+position = Vector2( 11.0296, 0 )
+script = ExtResource( 1 )
+

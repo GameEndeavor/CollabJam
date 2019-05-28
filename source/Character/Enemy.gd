@@ -1,68 +1,47 @@
-extends KinematicBody2D
+extends Character
+class_name Enemy
 
-signal damaged(amount)
-signal killed()
+onready var prepare_attack_timer = $Timers/PrepareAttack
+onready var attack_cooldown_timer = $Timers/AttackCooldown
 
-export (float) var max_health = 5
-export (float) var move_speed_units = 3 setget _set_move_speed_units
-export (float) var move_weight = 0.1
-export (float) var detection_radius = 5 * 16
-
-onready var state_machine = $StateMachine
-onready var body = $Body
-onready var status_animation_player = $StatusAnimation
-onready var immunity_timer = $Timers/ImmunityTimer
-
-onready var health = max_health setget _set_health
-
-var faction = "enemy"
-var velocity = Vector2.ZERO
-onready var move_speed = move_speed_units * 16 setget _set_move_speed
+export (float) var detection_radius = 6 * 16
+export (float) var max_attack_radius = 4 * 16
+export (float) var chase_distance = 8 * 16
+export (float) var arrival_distance = 2 * 16
+export (float) var arrival_deadzone = 1 * 16
 
 func _ready():
-	add_to_group(faction)
+	animation_player = $AnimationPlayer
 
-func _set_pursuit_velocity():
+func _apply_pursuit_velocity():
 	var target = Globals.player
 	
+	var dist = (target.position - position).length()
 	var desired_velocity = (target.position - position).normalized() * move_speed
+	
+	if dist < arrival_distance + arrival_deadzone:
+		desired_velocity *= max(dist / float(arrival_distance) - arrival_deadzone, 0)
+	
 	velocity = velocity.linear_interpolate(desired_velocity, move_weight)
 
-func _apply_movement():
-	velocity = move_and_slide(velocity)
+func _apply_stop_velocity():
+	velocity = velocity.linear_interpolate(Vector2.ZERO, move_weight)
 
-func damage(amount):
-	if immunity_timer.is_stopped():
-		immunity_timer.start()
-		status_animation_player.play("damage")
-		status_animation_player.queue("immunity")
-		_set_health(health - amount)
-		emit_signal("damaged", amount)
-
-func kill():
-	emit_signal("killed")
-	queue_free()
-
-func _update_facing():
-	if velocity.x != 0:
-		body.scale.x = sign(velocity.x)
+func aim_weapon_at_player():
+	weapon_handler.aim_at_target(Globals.player.position - position)
 
 func _should_pursue_player():
 	var dist = (Globals.player.position - position).length()
 	return true if dist <= detection_radius else false
 
-func _set_move_speed_units(value):
-	move_speed = value * 16
-	move_speed_units = value
+func has_target():
+	var dist = (Globals.player.position - position).length()
+	return true if dist < chase_distance else false
 
-func _set_move_speed(value):
-	move_speed = value
-	move_speed_units = value / 16.0
+func _should_prepare_attack():
+	var dist = (Globals.player.position - position).length()
+	return true if dist < max_attack_radius else false
 
-func _set_health(value):
-	health = clamp(value, 0, max_health)
-	if health == 0:
-		kill()
-
-func _on_ImmunityTimer_timeout():
-	status_animation_player.play("rest")
+func _prepare_attack():
+	if prepare_attack_timer.is_stopped():
+		prepare_attack_timer.start()

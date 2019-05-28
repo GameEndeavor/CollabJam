@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 4 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "flicker"
 length = 0.8
 loop = true
@@ -23,8 +23,7 @@ tracks/0/keys = {
 "values": [ Rect2( 148, 153, 8, 21 ), Rect2( 180, 153, 8, 21 ), Rect2( 212, 153, 8, 21 ), Rect2( 244, 153, 8, 21 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "rest"
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:region_rect")
@@ -54,6 +53,6 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "flicker"
-anims/flicker = SubResource( 3 )
-anims/rest = SubResource( 2 )
+anims/flicker = SubResource( 2 )
+anims/rest = SubResource( 3 )
 

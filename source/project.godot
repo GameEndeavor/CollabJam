@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Character/Character.gd"
+}, {
+"base": "Character",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Character/Enemy.gd"
+}, {
 "base": "Area2D",
 "class": "Hitbox",
 "language": "GDScript",
@@ -18,15 +28,23 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Core/StateMachine.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Sword.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
+"Enemy": "",
 "Hitbox": "",
-"StateMachine": ""
+"StateMachine": "",
+"Weapon": ""
 }
 
 [application]
 
-config/name="CollabGame"
+config/name="CollabJam"
 run/main_scene="res://World/Levels/DebugLevel.tscn"
 config/icon="res://icon.png"
 
