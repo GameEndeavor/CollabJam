@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://World/Effects.gd" type="Script" id=1]
+[ext_resource path="res://World/SceneChanger.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+void fragment() {
+	COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);//setup the default image 
+	float lum = (COLOR.r+COLOR.g+COLOR.b)/3.0;//get the average 
+	COLOR.xyz = vec3(lum);//set the average to get grayscale 
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "background_fade"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/BackgroundFade:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, -0.5 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "death_fade"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/Grayscale:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control/BackgroundFade:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Effects" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BackgroundFade" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.109804, 0.0666667, 0.0901961, 1 )
+
+[node name="Grayscale" type="ColorRect" parent="Control"]
+self_modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="SceneChanger" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/background_fade = SubResource( 1 )
+anims/death_fade = SubResource( 4 )
+

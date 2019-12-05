@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/We Persist.ogg-b7ca1815d2d355a5dc6ac0d14a5e47ec.oggstr"
+
+[deps]
+
+source_file="res://Music/We Persist.ogg"
+dest_files=[ "res://.import/We Persist.ogg-b7ca1815d2d355a5dc6ac0d14a5e47ec.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

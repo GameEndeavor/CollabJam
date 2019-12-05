@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Character/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Character/Enemies/Mage.gd" type="Script" id=2]
+[ext_resource path="res://Character/Enemies/MageFSM.gd" type="Script" id=3]
+[ext_resource path="res://Art/0x72_16x16DungeonTileset.v4.png" type="Texture" id=4]
+[ext_resource path="res://Weapons/WeaponScenes/Spells/FireballSpell.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 4 )
+
+[node name="Mage" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="StateMachine" parent="." index="0"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Body" index="0"]
+position = Vector2( 0, -3 )
+texture = ExtResource( 4 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 80, 176, 16, 16 )
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource( 1 )
+
+[node name="FireballSpell" parent="." index="7" instance=ExtResource( 5 )]
+

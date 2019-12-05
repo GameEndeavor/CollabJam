@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Character/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Character/Enemies/Pouncer.gd" type="Script" id=2]
+[ext_resource path="res://Character/Enemies/PouncerFSM.gd" type="Script" id=3]
+[ext_resource path="res://Art/0x72_16x16DungeonTileset.v4.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 3.0
+
+[node name="Pouncer" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+move_speed_units = 4.0
+move_weight = 0.3
+
+[node name="StateMachine" parent="." index="0"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Body" index="0"]
+position = Vector2( -1, -5 )
+texture = ExtResource( 4 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 0, 160, 16, 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, -2 )
+shape = SubResource( 1 )
+
+[node name="PrepareAttack" parent="Timers" index="1"]
+wait_time = 0.75
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+shape = SubResource( 3 )
+
+[node name="PounceTween" type="Tween" parent="." index="8"]
+[connection signal="timeout" from="Timers/PrepareAttack" to="StateMachine" method="_on_PrepareAttack_timeout"]

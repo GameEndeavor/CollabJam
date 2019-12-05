@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Weapons/AbstractMagicSpell.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Weapons/WeaponScenes/Spells/FireballSpell.gd" type="Script" id=2]
+
+[node name="FireballSpell" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="AttackTween" type="Tween" parent="." index="1"]
+
+[node name="Cooldown" type="Timer" parent="." index="2"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]

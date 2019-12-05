@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Weapons/AbstractSword.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Art/0x72_16x16DungeonTileset.v4.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 3 )
+
+[node name="RustySword" instance=ExtResource( 1 )]
+held_distance = 8.0
+attack_range = 28.0
+attack_duration = 0.13
+
+[node name="Sprite" type="Sprite" parent="Body" index="0"]
+position = Vector2( 7, 0 )
+rotation = 1.5708
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 164, 10, 8, 21 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/DamageArea" index="0"]
+position = Vector2( 7, 0 )
+shape = SubResource( 1 )
+

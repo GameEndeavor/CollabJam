@@ -1,26 +1,68 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Character/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Character/Enemies/Grunt.gd" type="Script" id=2]
 [ext_resource path="res://Character/Enemies/GruntFSM.gd" type="Script" id=3]
 [ext_resource path="res://Art/0x72_16x16DungeonTileset.v4.png" type="Texture" id=4]
-[ext_resource path="res://Weapons/Sword.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Weapons/WeaponScenes/RustySword.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
+radius = 6.0
 height = 8.0
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 4, 4 )
+[sub_resource type="CircleShape2D" id=2]
+radius = 4.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -3 ), Vector2( -1.51149, -4.60596 ), Vector2( 0, -3 ), Vector2( 2.26724, -4.32256 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -10.7264, 0.0, 9.04485 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 3.0
 
 [node name="Grunt" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+move_speed_units = 3.0
 
 [node name="StateMachine" parent="." index="0"]
 script = ExtResource( 3 )
-
-[node name="Body" parent="." index="1"]
-visible = true
 
 [node name="Sprite" type="Sprite" parent="Body" index="0"]
 position = Vector2( 0, -3 )
@@ -33,11 +75,25 @@ region_rect = Rect2( 32, 160, 16, 16 )
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, -3 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="." index="5"]
+visible = false
 shape = SubResource( 2 )
 
-[node name="Sword" parent="WeaponHandler" index="0" instance=ExtResource( 5 )]
+[node name="AnimationPlayer" parent="." index="6"]
+anims/walk = SubResource( 3 )
 
+[node name="DamageArea" parent="." index="7"]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+shape = SubResource( 4 )
+
+[node name="Neighbors" parent="." index="8"]
+visible = false
+
+[node name="RustySword" parent="." index="10" instance=ExtResource( 5 )]
 [connection signal="timeout" from="Timers/PrepareAttack" to="StateMachine" method="_on_PrepareAttack_timeout"]
+[connection signal="body_entered" from="Neighbors" to="." method="_on_Neighbors_body_entered"]

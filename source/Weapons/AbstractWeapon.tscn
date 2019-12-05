@@ -3,5 +3,8 @@
 [ext_resource path="res://Weapons/Weapon.gd" type="Script" id=1]
 
 [node name="AbstractWeapon" type="Node2D"]
+z_index = 1
 script = ExtResource( 1 )
+
+[node name="Body" type="Node2D" parent="."]
 

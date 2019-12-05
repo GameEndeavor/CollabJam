@@ -8,9 +8,11 @@ func _ready():
 	call_deferred("set_state", states.idle)
 
 func _state_logic(delta):
+	if state != states.idle && state != states.attack \
+			&& (state != states.telegraph || !parent.telegraph_tracking_timer.is_stopped()):
+		parent.aim_weapon_at_player()
 	if state == states.pursue:
 		parent._apply_pursuit_velocity()
-		parent.aim_weapon_at_player()
 		if parent._should_prepare_attack():
 			parent._prepare_attack()
 	else:
@@ -38,8 +40,12 @@ func _get_transition(delta):
 
 func _enter_state(new_state, old_state):
 	match new_state:
+		states.pursue:
+			parent.alert()
 		states.telegraph:
+			parent.telegraph_attack()
 			parent.animation_player.play("telegraph")
+			parent.telegraph_tracking_timer.start()
 		states.attack:
 			parent.attack()
 

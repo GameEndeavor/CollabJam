@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Character/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Character/Enemies/Ogre.gd" type="Script" id=2]
+[ext_resource path="res://Character/Enemies/GruntFSM.gd" type="Script" id=3]
+[ext_resource path="res://Art/0x72_16x16DungeonTileset.v4.png" type="Texture" id=4]
+[ext_resource path="res://Weapons/AbstractHammer.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 8.0
+height = 12.0
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 6, 4 )
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.0
+
+[node name="Ogre" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+max_health = 15.0
+move_speed_units = 1.5
+
+[node name="StateMachine" parent="." index="0"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Body" index="0"]
+position = Vector2( 1, -9 )
+texture = ExtResource( 4 )
+flip_h = true
+region_enabled = true
+region_rect = Rect2( 99, 177.25, 25.25, 32.75 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2( 0, -7 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" parent="." index="5"]
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" parent="Neighbors" index="0"]
+shape = SubResource( 1 )
+
+[node name="HealthBar" parent="." index="9"]
+margin_top = -25.0
+margin_bottom = -25.0
+
+[node name="Hammer" parent="." index="10" instance=ExtResource( 5 )]
+
+[connection signal="timeout" from="Timers/PrepareAttack" to="StateMachine" method="_on_PrepareAttack_timeout"]

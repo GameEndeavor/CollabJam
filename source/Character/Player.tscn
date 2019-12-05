@@ -1,18 +1,23 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Character/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Character/Player.gd" type="Script" id=2]
-[ext_resource path="res://Art/0x72_16x16DungeonTileset.v4.png" type="Texture" id=3]
-[ext_resource path="res://Weapons/Sword.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Utils/Shaker.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Art/0x72_16x16DungeonTileset.v4.png" type="Texture" id=4]
+[ext_resource path="res://Weapons/WeaponScenes/SteelSword.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SFX/sword_2.wav" type="AudioStream" id=6]
+[ext_resource path="res://SFX/hurt_4.wav" type="AudioStream" id=7]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 3.0
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4, 4 )
+[sub_resource type="CircleShape2D" id=2]
+radius = 4.0
 
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+max_health = 10.0
+move_speed_units = 3.0
 faction = "friendly"
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
@@ -20,21 +25,32 @@ current = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 
+[node name="Shaker" parent="Camera2D" index="0" instance=ExtResource( 3 )]
+
 [node name="Body" parent="." index="2"]
 visible = true
 
 [node name="Sprite" type="Sprite" parent="Body" index="0"]
 position = Vector2( 1, -5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 flip_h = true
 region_enabled = true
 region_rect = Rect2( 96, 139, 16, 21 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-shape = SubResource( 2 )
-
-[node name="CollisionShape2D" parent="." index="6"]
 shape = SubResource( 1 )
 
-[node name="Sword" parent="WeaponHandler" index="0" instance=ExtResource( 4 )]
+[node name="CollisionShape2D" parent="." index="6"]
+shape = SubResource( 2 )
+
+[node name="SteelSword" parent="." index="7" instance=ExtResource( 5 )]
+z_index = 1
+
+[node name="SFX" type="Node" parent="." index="8"]
+
+[node name="Attack" type="AudioStreamPlayer" parent="SFX" index="0"]
+stream = ExtResource( 6 )
+
+[node name="Hurt" type="AudioStreamPlayer" parent="SFX" index="1"]
+stream = ExtResource( 7 )
 

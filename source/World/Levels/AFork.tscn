@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://World/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Decor/Torch.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Character/Enemies/Grunt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Character/Enemies/Pouncer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/SceneTransition.tscn" type="PackedScene" id=5]
+
+[node name="AFork" instance=ExtResource( 1 )]
+
+[node name="Terrain" parent="Tilemaps" index="0"]
+tile_data = PoolIntArray( 196654, 3, 0, 196655, 3, 0, 262185, 13, 0, 262186, 4, 0, 262187, 4, 0, 262188, 4, 0, 262189, 14, 0, 262190, 3, 0, 262191, 3, 0, 262192, 13, 0, 262193, 14, 0, 327721, 15, 0, 327722, 32, 0, 327723, 5, 0, 327724, 31, 0, 327725, 16, 0, 327726, 3, 0, 327727, 3, 0, 327728, 15, 0, 327729, 16, 0, 393257, 2, 0, 393258, 2, 0, 393259, 2, 0, 393260, 2, 0, 393261, 2, 0, 393262, 3, 0, 393263, 3, 0, 393264, 2, 0, 393265, 2, 0, 458793, 3, 0, 458794, 3, 0, 458795, 3, 0, 458796, 3, 0, 458797, 3, 0, 458798, 3, 0, 458799, 3, 0, 458800, 3, 0, 458801, 3, 0, 524329, 3, 0, 524330, 3, 0, 524331, 3, 0, 524332, 3, 0, 524333, 3, 0, 524334, 3, 0, 524335, 3, 0, 524336, 3, 0, 524337, 3, 0, 589865, 6, 0, 589866, 6, 0, 589867, 3, 0, 589868, 3, 0, 589869, 6, 0, 589870, 6, 0, 589871, 6, 0, 589872, 6, 0, 589873, 6, 0, 655403, 3, 0, 655404, 3, 0, 720931, 13, 0, 720932, 4, 0, 720933, 4, 0, 720934, 14, 0, 720937, 13, 0, 720938, 14, 0, 720939, 3, 0, 720940, 3, 0, 720941, 13, 0, 720942, 14, 0, 786462, 13, 0, 786463, 4, 0, 786464, 4, 0, 786465, 4, 0, 786466, 14, 0, 786467, 15, 0, 786468, 5, 0, 786469, 31, 0, 786470, 16, 0, 786473, 15, 0, 786474, 16, 0, 786475, 3, 0, 786476, 3, 0, 786477, 15, 0, 786478, 16, 0, 851978, 13, 0, 851979, 4, 0, 851980, 4, 0, 851981, 4, 0, 851982, 14, 0, 851998, 15, 0, 851999, 5, 0, 852000, 32, 0, 852001, 5, 0, 852002, 16, 0, 852003, 3, 0, 852004, 3, 0, 852005, 21, 0, 852006, 23, 0, 852009, 3, 0, 852010, 3, 0, 852011, 3, 0, 852012, 3, 0, 852013, 2, 0, 852014, 2, 0, 917514, 15, 0, 917515, 5, 0, 917516, 5, 0, 917517, 35, 0, 917518, 16, 0, 917519, 13, 0, 917520, 4, 0, 917521, 14, 0, 917534, 2, 0, 917535, 2, 0, 917536, 2, 0, 917537, 2, 0, 917538, 2, 0, 917539, 3, 0, 917540, 3, 0, 917541, 26, 0, 917542, 28, 0, 917543, 13, 0, 917544, 14, 0, 917545, 3, 0, 917546, 3, 0, 917547, 3, 0, 917548, 3, 0, 917549, 3, 0, 917550, 3, 0, 983050, 20, 0, 983051, 3, 0, 983052, 3, 0, 983053, 36, 0, 983054, 2, 0, 983055, 15, 0, 983056, 34, 0, 983057, 16, 0, 983070, 3, 0, 983071, 3, 0, 983072, 3, 0, 983073, 3, 0, 983074, 3, 0, 983075, 3, 0, 983076, 3, 0, 983077, 3, 0, 983078, 3, 0, 983079, 15, 0, 983080, 16, 0, 983081, 3, 0, 983082, 3, 0, 983083, 3, 0, 983084, 3, 0, 983085, 3, 0, 983086, 3, 0, 1048586, 24, 0, 1048587, 3, 0, 1048588, 3, 0, 1048589, 3, 0, 1048590, 3, 0, 1048591, 2, 0, 1048592, 2, 0, 1048593, 2, 0, 1048596, 13, 0, 1048597, 4, 0, 1048598, 4, 0, 1048599, 4, 0, 1048600, 4, 0, 1048601, 14, 0, 1048606, 3, 0, 1048607, 3, 0, 1048608, 6, 0, 1048609, 6, 0, 1048610, 6, 0, 1048611, 3, 0, 1048612, 3, 0, 1048613, 3, 0, 1048614, 3, 0, 1048615, 2, 0, 1048616, 2, 0, 1048617, 3, 0, 1048618, 3, 0, 1048619, 3, 0, 1048620, 3, 0, 1048621, 3, 0, 1048622, 3, 0, 1114122, 29, 0, 1114123, 3, 0, 1114124, 3, 0, 1114125, 3, 0, 1114126, 3, 0, 1114127, 3, 0, 1114128, 3, 0, 1114129, 17, 0, 1114132, 15, 0, 1114133, 5, 0, 1114134, 32, 0, 1114135, 5, 0, 1114136, 5, 0, 1114137, 16, 0, 1114138, 13, 0, 1114139, 4, 0, 1114140, 4, 0, 1114141, 14, 0, 1114142, 3, 0, 1114143, 3, 0, 1114147, 3, 0, 1114148, 3, 0, 1114149, 3, 0, 1114150, 3, 0, 1114151, 3, 0, 1114152, 3, 0, 1114153, 3, 0, 1114154, 3, 0, 1114155, 3, 0, 1114156, 3, 0, 1114157, 3, 0, 1114158, 3, 0, 1179658, 3, 0, 1179659, 3, 0, 1179660, 3, 0, 1179661, 3, 0, 1179662, 3, 0, 1179663, 6, 0, 1179664, 3, 0, 1179665, 21, 0, 1179668, 3, 0, 1179669, 21, 0, 1179670, 22, 0, 1179671, 23, 0, 1179672, 24, 0, 1179673, 3, 0, 1179674, 15, 0, 1179675, 35, 0, 1179676, 34, 0, 1179677, 16, 0, 1179678, 3, 0, 1179679, 3, 0, 1179683, 6, 0, 1179684, 6, 0, 1179685, 6, 0, 1179686, 6, 0, 1179687, 6, 0, 1179688, 6, 0, 1179689, 6, 0, 1179690, 6, 0, 1179691, 6, 0, 1179692, 6, 0, 1179693, 6, 0, 1179694, 6, 0, 1245194, 6, 0, 1245195, 6, 0, 1245196, 6, 0, 1245197, 6, 0, 1245198, 6, 0, 1245200, 3, 0, 1245201, 21, 0, 1245204, 3, 0, 1245205, 26, 0, 1245206, 27, 0, 1245207, 28, 0, 1245208, 29, 0, 1245209, 3, 0, 1245210, 2, 0, 1245211, 36, 0, 1245212, 2, 0, 1245213, 2, 0, 1245214, 3, 0, 1245215, 3, 0, 1310736, 3, 0, 1310737, 26, 0, 1310738, 13, 0, 1310739, 14, 0, 1310740, 3, 0, 1310741, 3, 0, 1310742, 3, 0, 1310743, 3, 0, 1310744, 3, 0, 1310745, 3, 0, 1310746, 3, 0, 1310747, 3, 0, 1310748, 3, 0, 1310749, 3, 0, 1310750, 3, 0, 1310751, 3, 0, 1376272, 3, 0, 1376273, 3, 0, 1376274, 15, 0, 1376275, 16, 0, 1376276, 3, 0, 1376277, 3, 0, 1376278, 3, 0, 1376279, 3, 0, 1376280, 3, 0, 1376281, 3, 0, 1376282, 6, 0, 1376283, 6, 0, 1376284, 6, 0, 1376285, 6, 0, 1376286, 6, 0, 1376287, 6, 0, 1441808, 3, 0, 1441809, 3, 0, 1441810, 2, 0, 1441811, 2, 0, 1441812, 3, 0, 1441813, 3, 0, 1441814, 3, 0, 1441815, 3, 0, 1441816, 3, 0, 1441817, 3, 0, 1507344, 3, 0, 1507345, 3, 0, 1507346, 3, 0, 1507347, 3, 0, 1507348, 3, 0, 1507349, 3, 0, 1507350, 3, 0, 1507351, 3, 0, 1507352, 3, 0, 1507353, 3, 0, 1572880, 6, 0, 1572881, 6, 0, 1572882, 6, 0, 1572883, 6, 0, 1572884, 3, 0, 1572885, 3, 0, 1572886, 3, 0, 1572887, 3, 0, 1572888, 3, 0, 1572889, 3, 0, 1638420, 6, 0, 1638421, 6, 0, 1638422, 3, 0, 1638423, 3, 0, 1638424, 6, 0, 1638425, 6, 0, 1703958, 3, 0, 1703959, 3, 0, 1769494, 7, 0, 1769495, 8, 0, 1835030, 9, 0, 1835031, 10, 0, 1900566, 11, 0, 1900567, 12, 0 )
+
+[node name="Transitions" parent="Tilemaps" index="1"]
+tile_data = PoolIntArray( 196654, 0, 0, 1835030, 3, 0 )
+
+[node name="InvisibleCollision" parent="Tilemaps" index="2"]
+tile_data = PoolIntArray( 46, 0, 0, 47, 0, 0, 65581, 0, 0, 65584, 0, 0, 131117, 0, 0, 131120, 0, 0, 196653, 0, 0, 196656, 0, 0, 262189, 0, 0, 262192, 0, 0, 393256, 0, 0, 393266, 0, 0, 458792, 0, 0, 458802, 0, 0, 524328, 0, 0, 524338, 0, 0, 655402, 0, 0, 655405, 0, 0, 720938, 0, 0, 720941, 0, 0, 852007, 0, 0, 852008, 0, 0, 852015, 0, 0, 917533, 0, 0, 917543, 0, 0, 917544, 0, 0, 917551, 0, 0, 983049, 0, 0, 983069, 0, 0, 983087, 0, 0, 1048585, 0, 0, 1048594, 0, 0, 1048605, 0, 0, 1048623, 0, 0, 1114121, 0, 0, 1114130, 0, 0, 1114141, 0, 0, 1114144, 0, 0, 1114146, 0, 0, 1114159, 0, 0, 1179657, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179680, 0, 0, 1245199, 0, 0, 1245202, 0, 0, 1245203, 0, 0, 1245216, 0, 0, 1310735, 0, 0, 1310738, 0, 0, 1310739, 0, 0, 1310752, 0, 0, 1376271, 0, 0, 1441807, 0, 0, 1441818, 0, 0, 1507343, 0, 0, 1507354, 0, 0, 1572890, 0, 0, 1703957, 0, 0, 1703960, 0, 0, 1769493, 0, 0, 1769496, 0, 0, 1835029, 0, 0, 1835032, 0, 0, 1900565, 0, 0, 1900568, 0, 0, 1966102, 0, 0, 1966103, 0, 0 )
+
+[node name="Decor" parent="Tilemaps" index="3"]
+tile_data = PoolIntArray( 393259, 2, 0, 852009, 1, 0, 852010, 1, 0, 917542, 536870912, 0, 917545, 0, 0, 917546, 1, 0, 983052, 536870913, 0, 983071, 536870914, 0, 983084, 2, 0, 1048587, 2, 0, 1048620, 536870912, 0, 1114127, 2, 0, 1114155, 536870913, 0, 1179659, 0, 0, 1245207, 536870914, 0, 1310742, 2, 0 )
+
+[node name="Torches" parent="Tilemaps/Decor/Entities" index="0"]
+editor/display_folded = true
+
+[node name="Torch" parent="Tilemaps/Decor/Entities/Torches" index="0" instance=ExtResource( 2 )]
+position = Vector2( 168, 249.552 )
+
+[node name="Torch2" parent="Tilemaps/Decor/Entities/Torches" index="1" instance=ExtResource( 2 )]
+position = Vector2( 232, 248 )
+
+[node name="Torch3" parent="Tilemaps/Decor/Entities/Torches" index="2" instance=ExtResource( 2 )]
+position = Vector2( 168, 296 )
+
+[node name="Torch4" parent="Tilemaps/Decor/Entities/Torches" index="3" instance=ExtResource( 2 )]
+position = Vector2( 264, 376 )
+
+[node name="Torch5" parent="Tilemaps/Decor/Entities/Torches" index="4" instance=ExtResource( 2 )]
+position = Vector2( 328, 392 )
+
+[node name="Torch6" parent="Tilemaps/Decor/Entities/Torches" index="5" instance=ExtResource( 2 )]
+position = Vector2( 408, 392 )
+
+[node name="Torch7" parent="Tilemaps/Decor/Entities/Torches" index="6" instance=ExtResource( 2 )]
+position = Vector2( 328, 296 )
+
+[node name="Torch8" parent="Tilemaps/Decor/Entities/Torches" index="7" instance=ExtResource( 2 )]
+position = Vector2( 408, 296 )
+
+[node name="Torch9" parent="Tilemaps/Decor/Entities/Torches" index="8" instance=ExtResource( 2 )]
+position = Vector2( 504, 328 )
+
+[node name="Torch10" parent="Tilemaps/Decor/Entities/Torches" index="9" instance=ExtResource( 2 )]
+position = Vector2( 488, 232 )
+
+[node name="Torch11" parent="Tilemaps/Decor/Entities/Torches" index="10" instance=ExtResource( 2 )]
+position = Vector2( 568, 279.5 )
+
+[node name="Torch12" parent="Tilemaps/Decor/Entities/Torches" index="11" instance=ExtResource( 2 )]
+position = Vector2( 744, 280 )
+
+[node name="Torch13" parent="Tilemaps/Decor/Entities/Torches" index="12" instance=ExtResource( 2 )]
+position = Vector2( 568, 216 )
+
+[node name="Torch14" parent="Tilemaps/Decor/Entities/Torches" index="13" instance=ExtResource( 2 )]
+position = Vector2( 744, 215.5 )
+
+[node name="Torch15" parent="Tilemaps/Decor/Entities/Torches" index="14" instance=ExtResource( 2 )]
+position = Vector2( 664, 136 )
+
+[node name="Torch16" parent="Tilemaps/Decor/Entities/Torches" index="15" instance=ExtResource( 2 )]
+position = Vector2( 792, 136 )
+
+[node name="Grunt" parent="Tilemaps/Decor/Entities" index="1" instance=ExtResource( 3 )]
+position = Vector2( 341.559, 326.191 )
+collision_layer = 32
+
+[node name="Grunt2" parent="Tilemaps/Decor/Entities" index="2" instance=ExtResource( 3 )]
+position = Vector2( 390.121, 308.979 )
+collision_layer = 32
+initial_facing = -1
+
+[node name="Grunt4" parent="Tilemaps/Decor/Entities" index="3" instance=ExtResource( 3 )]
+position = Vector2( 584.679, 234.598 )
+collision_layer = 32
+initial_facing = -1
+
+[node name="Grunt5" parent="Tilemaps/Decor/Entities" index="4" instance=ExtResource( 3 )]
+position = Vector2( 604.349, 269.329 )
+collision_layer = 32
+initial_facing = -1
+
+[node name="Grunt6" parent="Tilemaps/Decor/Entities" index="5" instance=ExtResource( 3 )]
+position = Vector2( 709.158, 119.339 )
+collision_layer = 32
+initial_facing = -1
+
+[node name="Grunt3" parent="Tilemaps/Decor/Entities" index="6" instance=ExtResource( 3 )]
+position = Vector2( 198.945, 279.165 )
+collision_layer = 32
+initial_facing = -1
+
+[node name="Pouncer" parent="Tilemaps/Decor/Entities" index="7" instance=ExtResource( 4 )]
+position = Vector2( 696.165, 262.094 )
+collision_layer = 32
+
+[node name="Pouncer2" parent="Tilemaps/Decor/Entities" index="8" instance=ExtResource( 4 )]
+position = Vector2( 779.766, 108.805 )
+collision_layer = 32
+is_hidden = false
+
+[node name="SceneTransition" parent="SceneTransitions" index="0" instance=ExtResource( 5 )]
+position = Vector2( 752, 56 )
+level_scene = "res://World/Levels/Labrynth.tscn"
+
+[node name="Spawnpoint" parent="SpawnPoints" index="0"]
+position = Vector2( 368, 456 )
